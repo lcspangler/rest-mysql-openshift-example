@@ -1,7 +1,7 @@
 package org.example.service.model;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -13,13 +13,13 @@ import org.example.model.StopPayment;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class GetStopPaymentsResponse {
 
-	private List<StopPayment> stopPayments = new ArrayList<StopPayment>();
+	private Collection<StopPayment> stopPayments = new ArrayList<StopPayment>();
 
-	public List<StopPayment> getStopPayments() {
+	public Collection<StopPayment> getStopPayments() {
 		return stopPayments;
 	}
 
-	public void setStopPayments(List<StopPayment> stopPayments) {
+	public void setStopPayments(Collection<StopPayment> stopPayments) {
 		this.stopPayments = stopPayments;
 	}
 

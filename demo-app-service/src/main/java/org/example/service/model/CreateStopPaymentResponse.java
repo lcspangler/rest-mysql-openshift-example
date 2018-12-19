@@ -15,6 +15,14 @@ public class CreateStopPaymentResponse {
 
 	private List<ServiceError> errors = new ArrayList<ServiceError>();
 
+	public List<ServiceError> getErrors() {
+		return errors;
+	}
+
+	public void setErrors(List<ServiceError> errors) {
+		this.errors = errors;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

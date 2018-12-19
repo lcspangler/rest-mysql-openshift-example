@@ -9,11 +9,13 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.example.application.StopPaymentServiceValidation;
 import org.example.model.StopPayment;
 import org.example.repository.MySqlStopPaymentRepository;
 import org.example.repository.StopPaymentRepository;
 import org.example.service.model.CreateStopPaymentResponse;
 import org.example.service.model.GetStopPaymentResponse;
+import org.example.service.model.GetStopPaymentsResponse;
 
 @Path("/stop-payments")
 public class StopPaymentService {
@@ -21,6 +23,7 @@ public class StopPaymentService {
 	private static final Logger log = LogManager.getLogger(StopPaymentService.class);
 
 	private StopPaymentRepository stopPaymentRepository = new MySqlStopPaymentRepository();
+	private StopPaymentServiceValidation stopPaymentServiceValidation = new StopPaymentServiceValidation();
 
 	@POST
 	@Produces({ MediaType.APPLICATION_JSON })
@@ -29,16 +32,21 @@ public class StopPaymentService {
 		// In a real application we wouldn't log the full request at info level
 		log.info("Creating stop payment: {}", stopPayment);
 
-		stopPaymentRepository.addStopPayment(stopPayment);
+		response.setErrors(stopPaymentServiceValidation.validate(stopPayment));
+		if (response.getErrors().isEmpty()) {
+			stopPaymentRepository.addStopPayment(stopPayment);
+		}
 
 		return response;
 	}
 
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	public GetStopPaymentResponse getAllStopPayments() {
-		GetStopPaymentResponse response = new GetStopPaymentResponse();
+	public GetStopPaymentsResponse getAllStopPayments() {
+		GetStopPaymentsResponse response = new GetStopPaymentsResponse();
 		log.info("Retrieving all Stop Payments");
+
+		response.setStopPayments(stopPaymentRepository.getAllStopPayments());
 
 		return response;
 	}

@@ -8,7 +8,7 @@ import org.example.validation.error.ValidationError;
 
 public class StopPaymentValidation {
 
-	private List<ValidationError> validate(StopPayment stopPayment) {
+	public static List<ValidationError> validate(StopPayment stopPayment) {
 		List<ValidationError> errors = new ArrayList<ValidationError>();
 
 		return errors;
