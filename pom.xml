@@ -12,6 +12,7 @@
 
   <modules>
     <module>demo-app-model</module>
+    <module>demo-app-validation</module>
     <module>demo-app-repository</module>
     <module>demo-app-repository-mysql</module>
     <module>demo-app-service</module>

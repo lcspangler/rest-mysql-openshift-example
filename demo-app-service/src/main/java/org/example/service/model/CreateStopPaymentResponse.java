@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.example.model.error.ServiceError;
+import org.example.service.error.ServiceError;
 
 @XmlRootElement(name = "CreateStopPaymentResponse")
 @XmlAccessorType(XmlAccessType.FIELD)
