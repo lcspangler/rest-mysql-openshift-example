@@ -8,24 +8,14 @@
   <name>demo-app-validation</name>
 
   <dependencies>
-  
-<dependency>
-    <groupId>org.apache.kafka</groupId>
-    <artifactId>kafka-clients</artifactId>
-    <version>2.1.0</version>
-</dependency>
-<dependency>
-    <groupId>com.fasterxml.jackson.core</groupId>
-    <artifactId>jackson-databind</artifactId>
-    <version>2.9.7</version>
-</dependency>
-  
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
+
+  <dependency>
+    <groupId>org.example</groupId>
+    <artifactId>demo-app-model</artifactId>
+    <version>1.0.0.0</version>
+  </dependency>
+
+
     <dependency>
       <groupId>javax.xml.bind</groupId>
       <artifactId>jaxb-api</artifactId>
@@ -41,8 +31,35 @@
       <artifactId>jaxb-impl</artifactId>
       <version>2.3.0</version>
     </dependency>
-  </dependencies>
+    
+ <dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.12</version>
+    <scope>test</scope>
+</dependency>
   
+<dependency>
+    <groupId>info.cukes</groupId>
+    <artifactId>cucumber-junit</artifactId>
+    <version>1.2.5</version>
+      <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>info.cukes</groupId>
+    <artifactId>cucumber-java</artifactId>
+    <version>1.2.5</version>
+      <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>org.hamcrest</groupId>
+    <artifactId>hamcrest-library</artifactId>
+    <version>1.3</version>
+      <scope>test</scope>
+</dependency>
+
+ </dependencies>
+ 
   <build>
     <finalName>demo-app-validation</finalName>
       <plugins>    
