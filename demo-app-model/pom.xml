@@ -9,28 +9,18 @@
 
   <dependencies>
   
-<dependency>
-    <groupId>org.apache.kafka</groupId>
-    <artifactId>kafka-clients</artifactId>
-    <version>2.1.0</version>
-</dependency>
+
 <dependency>
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-databind</artifactId>
     <version>2.9.7</version>
 </dependency>
   
-  	<dependency>
-		<groupId>org.hibernate</groupId>
-		<artifactId>hibernate-annotations</artifactId>
-		<version>3.5.6-Final</version>
-	</dependency>
-	
-<dependency>
-    <groupId>org.hibernate.common</groupId>
-    <artifactId>hibernate-commons-annotations</artifactId>
-    <version>5.1.0.Final</version>
-</dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.2.2.Final</version>
+        </dependency>
   
     <dependency>
       <groupId>junit</groupId>

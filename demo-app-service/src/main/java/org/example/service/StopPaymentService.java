@@ -32,10 +32,10 @@ public class StopPaymentService {
 		// In a real application we wouldn't log the full request at info level
 		log.info("Creating stop payment: {}", stopPayment);
 
-		// response.setErrors(stopPaymentServiceValidation.validate(stopPayment));
-		// if (response.getErrors().isEmpty()) {
-		// stopPaymentRepository.addStopPayment(stopPayment);
-		// }
+		response.setErrors(stopPaymentServiceValidation.validate(stopPayment));
+		if (response.getErrors().isEmpty()) {
+			stopPaymentRepository.addStopPayment(stopPayment);
+		}
 
 		return response;
 	}
@@ -46,7 +46,7 @@ public class StopPaymentService {
 		GetStopPaymentsResponse response = new GetStopPaymentsResponse();
 		log.info("Retrieving all Stop Payments");
 
-		// response.setStopPayments(stopPaymentRepository.getAllStopPayments());
+		response.setStopPayments(stopPaymentRepository.getAllStopPayments());
 
 		return response;
 	}

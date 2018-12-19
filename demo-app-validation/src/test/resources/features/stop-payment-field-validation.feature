@@ -23,3 +23,15 @@ Examples:
 | 1111000011110000  | 25.62           | Netflix       |           |            |                             |  
 
 
+#==========================================================
+Scenario: Validate required Stop Payment fields
+
+Given I have a Stop Payment with the following:
+| Debit Card Number   | Stop Pay Amount   | Merchant Name   | Reason    | 
+|                     | 25.62             | Netflix         | Cancelled | 
+
+When I validate the Stop Payment
+
+Then I expect the following validation errors:
+| Error Code   | Error Description         | 
+| ERR001       | Missing Debit Card Number |

@@ -1,7 +1,6 @@
 package org.example.repository;
 
 import java.math.BigInteger;
-import java.util.Collection;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -10,26 +9,36 @@ import org.example.model.StopPayment;
 import org.example.repository.util.HibernateUtil;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 public class MySqlStopPaymentRepository implements StopPaymentRepository {
 
 	private static final Logger log = LogManager.getLogger(MySqlStopPaymentRepository.class);
 
-	private Session session = HibernateUtil.getSessionFactory().openSession();
+	HibernateUtil hibernateUtil = new HibernateUtil();
+
+	final Session session = hibernateUtil.getHibernateSession();
 
 	@Override
 	public void addStopPayment(StopPayment stopPayment) {
 		// In a real application the full object would not be logged at info level
 		log.info("Saving stop payment: {}", stopPayment);
-		session.beginTransaction();
+
+		Transaction transaction = session.beginTransaction();
 		session.save(stopPayment);
-		session.getTransaction().commit();
+
+		transaction.commit();
 	}
 
 	@Override
-	public Collection<StopPayment> getAllStopPayments() {
+	public List<StopPayment> getAllStopPayments() {
+		Transaction transaction = session.beginTransaction();
+
 		Criteria cr = session.createCriteria(StopPayment.class);
-		List results = cr.list();
+		List<StopPayment> results = cr.list();
+
+		transaction.commit();
+
 		return results;
 	}
 
@@ -50,6 +59,18 @@ public class MySqlStopPaymentRepository implements StopPaymentRepository {
 	public void deleteStopPayment(StopPayment stopPayment) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public HibernateUtil getHibernateUtil() {
+		return hibernateUtil;
+	}
+
+	public void setHibernateUtil(HibernateUtil hibernateUtil) {
+		this.hibernateUtil = hibernateUtil;
+	}
+
+	public Session getSession() {
+		return session;
 	}
 
 }

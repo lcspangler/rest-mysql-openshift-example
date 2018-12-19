@@ -1,7 +1,7 @@
 package org.example.repository;
 
 import java.math.BigInteger;
-import java.util.Collection;
+import java.util.List;
 
 import org.example.model.StopPayment;
 
@@ -9,7 +9,7 @@ public interface StopPaymentRepository {
 
 	public void addStopPayment(StopPayment stopPayment);
 
-	public Collection<StopPayment> getAllStopPayments();
+	public List<StopPayment> getAllStopPayments();
 
 	public StopPayment getStopPayment(BigInteger id);
 

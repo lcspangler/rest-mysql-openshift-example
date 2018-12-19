@@ -2,10 +2,13 @@ package org.example.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -21,8 +24,9 @@ public class StopPayment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "ID", unique = true)
-	private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID", updatable = false, unique = true)
+	private BigInteger id;
 	@Column(name = "MERCHANT_NM", unique = true, nullable = false, length = 256)
 	private String merchantName;
 	@Column(name = "DEBIT_CARD_NO", unique = true, nullable = false, length = 16)
@@ -46,11 +50,11 @@ public class StopPayment implements Serializable {
 	@Column(name = "UPDATE_DT", unique = true, nullable = false)
 	private LocalDateTime updatedTimestamp;
 
-	public String getId() {
+	public BigInteger getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(BigInteger id) {
 		this.id = id;
 	}
 
