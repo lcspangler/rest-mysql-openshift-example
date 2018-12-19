@@ -10,8 +10,6 @@ import javax.ws.rs.core.MediaType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.model.StopPayment;
-import org.example.repository.MySqlStopPaymentRepository;
-import org.example.repository.StopPaymentRepository;
 import org.example.service.model.CreateStopPaymentResponse;
 import org.example.service.model.GetStopPaymentResponse;
 
@@ -20,16 +18,12 @@ public class StopPaymentService {
 
 	private static final Logger log = LogManager.getLogger(StopPaymentService.class);
 
-	// TODO: Replace this with spring injection
-	private StopPaymentRepository stopPaymentRepository = new MySqlStopPaymentRepository();
-
 	@POST
 	@Produces({ MediaType.APPLICATION_JSON })
 	public CreateStopPaymentResponse createStopPayment(StopPayment stopPayment) {
 		CreateStopPaymentResponse response = new CreateStopPaymentResponse();
 		// In a real application we wouldn't log the full request at info level
 		log.info("Creating stop payment: {}", stopPayment);
-		stopPaymentRepository.addStopPayment(stopPayment);
 
 		return response;
 	}

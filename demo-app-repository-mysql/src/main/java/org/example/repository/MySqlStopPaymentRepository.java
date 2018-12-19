@@ -1,11 +1,14 @@
 package org.example.repository;
 
 import java.math.BigInteger;
+import java.util.Collection;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.model.StopPayment;
 import org.example.repository.util.HibernateUtil;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 public class MySqlStopPaymentRepository implements StopPaymentRepository {
@@ -24,7 +27,15 @@ public class MySqlStopPaymentRepository implements StopPaymentRepository {
 	}
 
 	@Override
+	public Collection<StopPayment> getAllStopPayments() {
+		Criteria cr = session.createCriteria(StopPayment.class);
+		List results = cr.list();
+		return results;
+	}
+
+	@Override
 	public StopPayment getStopPayment(BigInteger id) {
+		log.info("Retrieving stop payment with id: {}", id);
 		// TODO Auto-generated method stub
 		return null;
 	}
