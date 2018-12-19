@@ -16,6 +16,19 @@
     <version>1.0.0.0</version>
   </dependency>
   
+    <dependency>
+    <groupId>org.example</groupId>
+    <artifactId>demo-app-repository</artifactId>
+    <version>1.0.0.0</version>
+  </dependency>
+  
+    <dependency>
+    <groupId>org.example</groupId>
+    <artifactId>demo-app-repository-mysql</artifactId>
+    <version>1.0.0.0</version>
+  </dependency>
+  
+  
   <!--  RestEasy -->
     <dependency>
 		<groupId>org.jboss.resteasy</groupId>

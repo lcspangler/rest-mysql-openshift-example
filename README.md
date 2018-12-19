@@ -22,25 +22,24 @@ You should be able to login to the web console with user:admin, pass:admin
 
 
 
-#### Install and Populate MySQL Database
-
-
 #### Source-to-Image Application Build and Deploy
 
+Create a new OpenShift project for the new application.
 ```
 $ oc new-project rest-mysql-demo
 ```
 
+Build the project and run unit tests.
 ```
 $ mvn clean install
 ```
 
+Create the application for the rest service deployable in OpenShift.
 ```
 $ oc new-app openshift/jboss-eap-7/eap70-openshift~http://github.com/lcspangler/rest-mysql-openshift-example.git --name=demo-app-service
 ```
 
-
-In a real application, the login credentials should go into a secret instead of a configmap
+Create a configmap for environment variables used by the application. In a real application, the login credentials should go into a secret instead of a configmap.
 ```
 $ oc project mysql-demo
 $ database_url=`oc get service mysql -o=jsonpath='{.spec.clusterIP}{"\n"}'`
@@ -52,6 +51,7 @@ $ oc create configmap rest-mysql-demo-config \
             --from-literal=DATABASE_PASS=pass
 ```
 
+Apply the configmap to the deployment config.
 ```
 oc set env dc/demo-app-service --from configmap/rest-mysql-demo-config
 ```

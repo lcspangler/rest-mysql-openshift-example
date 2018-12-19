@@ -2,14 +2,25 @@ package org.example.repository;
 
 import java.math.BigInteger;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.model.StopPayment;
+import org.example.repository.util.HibernateUtil;
+import org.hibernate.Session;
 
 public class MySqlStopPaymentRepository implements StopPaymentRepository {
 
+	private static final Logger log = LogManager.getLogger(MySqlStopPaymentRepository.class);
+
+	private Session session = HibernateUtil.getSessionFactory().openSession();
+
 	@Override
 	public void addStopPayment(StopPayment stopPayment) {
-		// TODO Auto-generated method stub
-
+		// In a real application the full object would not be logged at info level
+		log.info("Saving stop payment: {}", stopPayment);
+		session.beginTransaction();
+		session.save(stopPayment);
+		session.getTransaction().commit();
 	}
 
 	@Override
