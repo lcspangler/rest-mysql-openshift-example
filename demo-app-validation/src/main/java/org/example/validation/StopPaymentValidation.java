@@ -6,7 +6,7 @@ import java.util.List;
 import org.example.model.StopPayment;
 import org.example.validation.error.ValidationError;
 
-public class ValidateStopPayment {
+public class StopPaymentValidation {
 
 	private List<ValidationError> validate(StopPayment stopPayment) {
 		List<ValidationError> errors = new ArrayList<ValidationError>();
