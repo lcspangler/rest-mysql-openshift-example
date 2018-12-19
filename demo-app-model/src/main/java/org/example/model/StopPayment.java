@@ -1,27 +1,50 @@
 package org.example.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "StopPayment")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class StopPayment {
+@Entity
+@Table(name = "STOP_PAY_TBL")
+public class StopPayment implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name = "ID", unique = true)
 	private String id;
+	@Column(name = "MERCHANT_NM", unique = true, nullable = false, length = 256)
 	private String merchantName;
+	@Column(name = "DEBIT_CARD_NO", unique = true, nullable = false, length = 16)
 	private String debitCardNumber;
+	@Column(name = "STOP_PAY_AMT", unique = true, nullable = false)
 	private BigDecimal stopPayAmount;
+	@Column(name = "FEE_AMT", unique = true, nullable = true)
 	private BigDecimal feeAmount;
+	@Column(name = "REASON", unique = true, nullable = true, length = 256)
 	private String reason;
-	private String createdBy;
-	private LocalDateTime createdTimestamp;
-	private String updatedBy;
+	@Column(name = "LAST_MATCH_DT", unique = true, nullable = false)
 	private LocalDateTime lastMatchDate;
+	@Column(name = "EXPIRATION_DT", unique = true, nullable = false)
 	private LocalDateTime expirationDate;
+	@Column(name = "CREATED_BY", unique = true, nullable = false)
+	private String createdBy;
+	@Column(name = "CREATE_DT", unique = true, nullable = false)
+	private LocalDateTime createdTimestamp;
+	@Column(name = "UPDATED_BY", unique = true, nullable = true)
+	private String updatedBy;
+	@Column(name = "UPDATE_DT", unique = true, nullable = false)
+	private LocalDateTime updatedTimestamp;
 
 	public String getId() {
 		return id;
@@ -71,6 +94,22 @@ public class StopPayment {
 		this.reason = reason;
 	}
 
+	public LocalDateTime getLastMatchDate() {
+		return lastMatchDate;
+	}
+
+	public void setLastMatchDate(LocalDateTime lastMatchDate) {
+		this.lastMatchDate = lastMatchDate;
+	}
+
+	public LocalDateTime getExpirationDate() {
+		return expirationDate;
+	}
+
+	public void setExpirationDate(LocalDateTime expirationDate) {
+		this.expirationDate = expirationDate;
+	}
+
 	public String getCreatedBy() {
 		return createdBy;
 	}
@@ -95,20 +134,12 @@ public class StopPayment {
 		this.updatedBy = updatedBy;
 	}
 
-	public LocalDateTime getLastMatchDate() {
-		return lastMatchDate;
+	public LocalDateTime getUpdatedTimestamp() {
+		return updatedTimestamp;
 	}
 
-	public void setLastMatchDate(LocalDateTime lastMatchDate) {
-		this.lastMatchDate = lastMatchDate;
-	}
-
-	public LocalDateTime getExpirationDate() {
-		return expirationDate;
-	}
-
-	public void setExpirationDate(LocalDateTime expirationDate) {
-		this.expirationDate = expirationDate;
+	public void setUpdatedTimestamp(LocalDateTime updatedTimestamp) {
+		this.updatedTimestamp = updatedTimestamp;
 	}
 
 	@Override
@@ -126,6 +157,7 @@ public class StopPayment {
 		result = prime * result + ((reason == null) ? 0 : reason.hashCode());
 		result = prime * result + ((stopPayAmount == null) ? 0 : stopPayAmount.hashCode());
 		result = prime * result + ((updatedBy == null) ? 0 : updatedBy.hashCode());
+		result = prime * result + ((updatedTimestamp == null) ? 0 : updatedTimestamp.hashCode());
 		return result;
 	}
 
@@ -193,6 +225,11 @@ public class StopPayment {
 				return false;
 		} else if (!updatedBy.equals(other.updatedBy))
 			return false;
+		if (updatedTimestamp == null) {
+			if (other.updatedTimestamp != null)
+				return false;
+		} else if (!updatedTimestamp.equals(other.updatedTimestamp))
+			return false;
 		return true;
 	}
 
@@ -200,8 +237,9 @@ public class StopPayment {
 	public String toString() {
 		return "StopPayment [id=" + id + ", merchantName=" + merchantName + ", debitCardNumber=" + debitCardNumber
 				+ ", stopPayAmount=" + stopPayAmount + ", feeAmount=" + feeAmount + ", reason=" + reason
-				+ ", createdBy=" + createdBy + ", createdTimestamp=" + createdTimestamp + ", updatedBy=" + updatedBy
-				+ ", lastMatchDate=" + lastMatchDate + ", expirationDate=" + expirationDate + "]";
+				+ ", lastMatchDate=" + lastMatchDate + ", expirationDate=" + expirationDate + ", createdBy=" + createdBy
+				+ ", createdTimestamp=" + createdTimestamp + ", updatedBy=" + updatedBy + ", updatedTimestamp="
+				+ updatedTimestamp + "]";
 	}
 
 }

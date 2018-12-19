@@ -22,6 +22,7 @@ public class StopPaymentService {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public CreateStopPaymentResponse createStopPayment(StopPayment stopPayment) {
 		CreateStopPaymentResponse response = new CreateStopPaymentResponse();
+		// In a real application we wouldn't log the full request at info level
 		log.info("Creating stop payment: {}", stopPayment);
 
 		return response;
