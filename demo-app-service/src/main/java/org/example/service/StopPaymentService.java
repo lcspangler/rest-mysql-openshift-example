@@ -20,6 +20,7 @@ public class StopPaymentService {
 
 	private static final Logger log = LogManager.getLogger(StopPaymentService.class);
 
+	// TODO: Replace this with spring injection
 	private StopPaymentRepository stopPaymentRepository = new MySqlStopPaymentRepository();
 
 	@POST
@@ -29,6 +30,15 @@ public class StopPaymentService {
 		// In a real application we wouldn't log the full request at info level
 		log.info("Creating stop payment: {}", stopPayment);
 		stopPaymentRepository.addStopPayment(stopPayment);
+
+		return response;
+	}
+
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	public GetStopPaymentResponse getAllStopPayments() {
+		GetStopPaymentResponse response = new GetStopPaymentResponse();
+		log.info("Retrieving all Stop Payments");
 
 		return response;
 	}
