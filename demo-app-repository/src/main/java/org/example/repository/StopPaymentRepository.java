@@ -6,12 +6,12 @@ import org.example.model.StopPayment;
 
 public interface StopPaymentRepository {
 
-	public void addStopPayment();
+	public void addStopPayment(StopPayment stopPayment);
 
 	public StopPayment getStopPayment(BigInteger id);
 
 	public void updateStopPayment(StopPayment stopPayment);
 
-	public void deleteStopPayment(BigInteger id);
+	public void deleteStopPayment(StopPayment stopPayment);
 
 }

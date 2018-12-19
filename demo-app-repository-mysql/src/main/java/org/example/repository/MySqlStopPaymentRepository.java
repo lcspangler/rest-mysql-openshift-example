@@ -7,7 +7,7 @@ import org.example.model.StopPayment;
 public class MySqlStopPaymentRepository implements StopPaymentRepository {
 
 	@Override
-	public void addStopPayment() {
+	public void addStopPayment(StopPayment stopPayment) {
 		// TODO Auto-generated method stub
 
 	}
@@ -25,7 +25,7 @@ public class MySqlStopPaymentRepository implements StopPaymentRepository {
 	}
 
 	@Override
-	public void deleteStopPayment(BigInteger id) {
+	public void deleteStopPayment(StopPayment stopPayment) {
 		// TODO Auto-generated method stub
 
 	}

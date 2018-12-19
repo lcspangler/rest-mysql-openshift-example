@@ -35,3 +35,8 @@ $ mvn clean install
 ```
 $ oc new-app openshift/jboss-eap-7/eap70-openshift~http://github.com/lcspangler/rest-mysql-openshift-example.git --context-dir=/demo-app-service --name=demo-app-service
 ```
+
+
+
+
+oc new-app openshift/wildfly-101-centos7~https://github.com/lcspangler/rest-mysql-openshift-example.git --context-dir=/demo-app-service --name=demo-app-service
