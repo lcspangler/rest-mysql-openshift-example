@@ -59,3 +59,10 @@ oc set env dc/demo-app-service --from configmap/rest-mysql-demo-config
 
 
 oc new-app openshift/wildfly-101-centos7~https://github.com/lcspangler/rest-mysql-openshift-example.git --name=demo-app-service
+
+
+
+
+
+
+oc new-app jboss-eap-7-tech-preview/eap72-openshift~http://github.com/lcspangler/rest-mysql-openshift-example.git --name=demo-app-service
