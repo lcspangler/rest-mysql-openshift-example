@@ -68,10 +68,12 @@ public class StopPaymentsValidationSteps {
 
 		List<Map<String, String>> rows = validationErrorsTable.asMaps(String.class, String.class);
 		rows.forEach(row -> {
-			ValidationError expectedError = new ValidationError();
-			expectedError.setErrorCode(((Map<String, String>) row).get("Debit Card Number"));
-			expectedError.setErrorDescription(row.get("Error Description"));
-			expectedErrors.add(expectedError);
+			if (!row.get("Error Code").isBlank()) {
+				ValidationError expectedError = new ValidationError();
+				expectedError.setErrorCode(row.get("Error Code"));
+				expectedError.setErrorDescription(row.get("Error Description"));
+				expectedErrors.add(expectedError);
+			}
 		});
 
 		return expectedErrors;

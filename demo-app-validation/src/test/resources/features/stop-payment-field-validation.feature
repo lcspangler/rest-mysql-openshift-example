@@ -18,8 +18,8 @@ Then I expect the following validation errors:
 Examples:
 | Debit Card Number | Stop Pay Amount | Merchant Name | Reason    | Error Code | Error Description           | 
 |                   | 25.62           | Netflix       | Cancelled | ERR001     | Missing Debit Card Number   |
-| 1111000011110000  |                 | Netflix       | Cancelled | ERR002     | Missing Stop Payment Amount |
+| 1111000011110000  |                 | Netflix       | Cancelled | ERR002     | Missing Stop Pay Amount     |
 | 1111000011110000  | 25.62           |               | Cancelled | ERR003     | Missing Merchant Name       |
-| 1111000011110000  | 25.62           | Netflix       |           | ERR004     | Missing Reason              |  
+| 1111000011110000  | 25.62           | Netflix       |           |            |                             |  
 
 
