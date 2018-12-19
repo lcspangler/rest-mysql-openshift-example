@@ -3,6 +3,12 @@ package org.example.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "StopPayment")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class StopPayment {
 
 	private String id;
