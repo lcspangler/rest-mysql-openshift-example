@@ -17,7 +17,14 @@ import cucumber.api.java.en.When;
 
 public class StopPaymentsValidationSteps {
 
-	StopPaymentsValidationTestContext testContext = new StopPaymentsValidationTestContext();
+	private static final String DEBIT_CARD = "Debit Card";
+	private static final String STOP_PAY_AMOUNT = "Stop Pay Amount";
+	private static final String ERROR_CODE = "Error Code";
+	private static final String ERROR_DESCRIPTION = "Error Description";
+	private static final String MERCHANT_NAME = "Merchant Name";
+	private static final String REASON = "Reason";
+
+	private StopPaymentsValidationTestContext testContext = new StopPaymentsValidationTestContext();
 
 	@Given("^I have a Stop Payment with the following:$")
 	public void i_have_a_Stop_Payment_with_the_following(DataTable stopPaymentTable) throws Throwable {
@@ -52,12 +59,12 @@ public class StopPaymentsValidationSteps {
 
 		List<Map<String, String>> rows = stopPaymentTable.asMaps(String.class, String.class);
 		rows.forEach(row -> {
-			stopPayment.setDebitCardNumber(row.get("Debit Card Number"));
-			if (!row.get("Stop Pay Amount").isEmpty()) {
-				stopPayment.setStopPayAmount(new BigDecimal(row.get("Stop Pay Amount")));
+			stopPayment.setDebitCardNumber(row.get(DEBIT_CARD));
+			if (!row.get(STOP_PAY_AMOUNT).isEmpty()) {
+				stopPayment.setStopPayAmount(new BigDecimal(row.get(STOP_PAY_AMOUNT)));
 			}
-			stopPayment.setMerchantName(row.get("Merchant Name"));
-			stopPayment.setReason(row.get("Reason"));
+			stopPayment.setMerchantName(row.get(MERCHANT_NAME));
+			stopPayment.setReason(row.get(REASON));
 		});
 
 		return stopPayment;
@@ -68,10 +75,10 @@ public class StopPaymentsValidationSteps {
 
 		List<Map<String, String>> rows = validationErrorsTable.asMaps(String.class, String.class);
 		rows.forEach(row -> {
-			if (!row.get("Error Code").isBlank()) {
+			if (!(row.get(ERROR_CODE) == null || row.get(ERROR_CODE).equals(""))) {
 				ValidationError expectedError = new ValidationError();
-				expectedError.setErrorCode(row.get("Error Code"));
-				expectedError.setErrorDescription(row.get("Error Description"));
+				expectedError.setErrorCode(row.get(ERROR_CODE));
+				expectedError.setErrorDescription(row.get(ERROR_DESCRIPTION));
 				expectedErrors.add(expectedError);
 			}
 		});
