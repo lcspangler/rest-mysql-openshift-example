@@ -11,21 +11,15 @@ public class StopPaymentValidation {
 	public static List<ValidationError> validate(StopPayment stopPayment) {
 		List<ValidationError> errors = new ArrayList<ValidationError>();
 
-		if (stopPayment.getDebitCardNumber().isEmpty()) {
+		if (stopPayment.getDebitCardNumber() == null || stopPayment.getDebitCardNumber().equals("")) {
 			ValidationError error = new ValidationError();
 			error.setErrorCode("ERR001");
 			error.setErrorDescription("Missing Debit Card Number");
 			errors.add(error);
 		}
-		if (stopPayment.getStopPayAmount() == null) {
+		if (stopPayment.getMerchantName() == null || stopPayment.getMerchantName().equals("")) {
 			ValidationError error = new ValidationError();
 			error.setErrorCode("ERR002");
-			error.setErrorDescription("Missing Stop Pay Amount");
-			errors.add(error);
-		}
-		if (stopPayment.getMerchantName().isEmpty()) {
-			ValidationError error = new ValidationError();
-			error.setErrorCode("ERR003");
 			error.setErrorDescription("Missing Merchant Name");
 			errors.add(error);
 		}
