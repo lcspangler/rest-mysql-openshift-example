@@ -21,6 +21,26 @@ $ minishift addon apply admin-user
 You should be able to login to the web console with user:admin, pass:admin
 
 
+#### MySQL Database
+
+If creating data base in OpenShift, make a new project.
+```
+$ oc new-project mysql-demo
+```
+
+Provision a database on the local OpenShift cluster using the MySQL image.
+
+Port forward from OpenShift project to local in order to use MySQL workbench from desktop.
+```
+$ oc project mysql-demo
+$ oc get pods
+$ oc port-forward <mysql pod name> 3306:3306
+```
+
+Alternatively, use a MySQL database outside of your local OpenShift.
+
+Run the DDL to create the example table
+
 
 #### Source-to-Image Application Build and Deploy
 
@@ -36,7 +56,7 @@ $ mvn clean install
 
 Create the application for the rest service deployable in OpenShift.
 ```
-$ oc new-app openshift/jboss-eap-7/eap70-openshift~http://github.com/lcspangler/rest-mysql-openshift-example.git --name=demo-app-service
+$ oc new-app openshift/wildfly-101-centos7~https://github.com/lcspangler/rest-mysql-openshift-example.git --name=demo-app-service
 ```
 
 Create a configmap for environment variables used by the application. In a real application, the login credentials should go into a secret instead of a configmap.
@@ -51,18 +71,39 @@ $ oc create configmap rest-mysql-demo-config \
             --from-literal=DATABASE_PASS=pass
 ```
 
+If using a different database (not on local cluster), use those credentials instead.
+```
+$ oc project rest-mysql-demo
+$ oc create configmap rest-mysql-demo-config \
+            --from-literal=DATABASE_URL="${database_url}" \
+            --from-literal=DATABASE_USER=user \
+            --from-literal=DATABASE_PASS=pass
+```
+
 Apply the configmap to the deployment config.
 ```
 oc set env dc/demo-app-service --from configmap/rest-mysql-demo-config
 ```
+
+Wait for the application to redeploy.
+
+Expose the route for the application.
 
 
 
 oc new-app openshift/wildfly-101-centos7~https://github.com/lcspangler/rest-mysql-openshift-example.git --name=demo-app-service
 
 
-
+oc new-app registry.access.redhat.com/jboss-eap-7/eap71-openshift:latest~https://github.com/lcspangler/rest-mysql-openshift-example.git --name=demo-app-service
 
 
 
 oc new-app jboss-eap-7-tech-preview/eap72-openshift~http://github.com/lcspangler/rest-mysql-openshift-example.git --name=demo-app-service
+
+
+
+
+oc new-app openshift/jboss-eap-7/eap70-openshift~http://github.com/lcspangler/rest-mysql-openshift-example.git --name=demo-app-service
+
+
+oc new-app openshift/wildfly-101-centos7~https://github.com/lcspangler/rest-mysql-openshift-example.git --name=demo-app-service
