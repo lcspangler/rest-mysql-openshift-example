@@ -76,7 +76,7 @@ public class StopPaymentsValidationSteps {
 		List<Map<String, String>> rows = validationErrorsTable.asMaps(String.class, String.class);
 		rows.forEach(row -> {
 			// if (!(row.get(ERROR_CODE) == null || row.get(ERROR_CODE).equals(""))) {
-			if (!row.get(ERROR_CODE).isBlank()) {
+			if (!row.get(ERROR_CODE).equals("")) {
 				ValidationError expectedError = new ValidationError();
 				expectedError.setErrorCode(row.get(ERROR_CODE));
 				expectedError.setErrorDescription(row.get(ERROR_DESCRIPTION));
