@@ -56,7 +56,7 @@ public class StopPaymentIntegration {
 		// Retrieve and check
 		List<StopPayment> retrievedStopPayments = testStopPaymentRepository.getAllStopPayments();
 		if (retrievedStopPayments.isEmpty()) {
-			fail("No stop payment retrieved");
+			fail("No stop payments retrieved");
 		} else {
 			assertTrue(retrievedStopPayments.size() == 3);
 		}
