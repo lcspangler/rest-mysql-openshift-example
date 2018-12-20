@@ -2,12 +2,11 @@ package org.example.step.definitions;
 
 import static org.junit.Assert.assertEquals;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.example.model.StopPayment;
+import org.example.model.Customer;
 import org.example.validation.error.ValidationError;
 
 import cucumber.api.DataTable;
@@ -15,24 +14,25 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-public class StopPaymentsValidationSteps {
+public class CustomerValidationSteps {
 
-	private static final String DEBIT_CARD = "Debit Card Number";
-	private static final String STOP_PAY_AMOUNT = "Stop Pay Amount";
+	private static final String UNIQUE_ID = "Unique Id";
+	private static final String FIRST_NAME = "First Name";
+	private static final String LAST_NAME = "Last Name";
+	private static final String ACCOUNT_NUMBER = "Account Number";
+	private static final String FAVORITE_COLOR = "Favorite Color";
 	private static final String ERROR_CODE = "Error Code";
 	private static final String ERROR_DESCRIPTION = "Error Description";
-	private static final String MERCHANT_NAME = "Merchant Name";
-	private static final String REASON = "Reason";
 
-	private StopPaymentsValidationTestContext testContext = new StopPaymentsValidationTestContext();
+	private CustomerValidationTestContext testContext = new CustomerValidationTestContext();
 
-	@Given("^I have a Stop Payment with the following:$")
-	public void i_have_a_Stop_Payment_with_the_following(DataTable stopPaymentTable) throws Throwable {
-		testContext.setStopPayment(makeStopPayment(stopPaymentTable));
+	@Given("^I have a Customer with the following:$")
+	public void i_have_a_Customer_with_the_following(DataTable customerTable) throws Throwable {
+		testContext.setCustomer(makeCustomer(customerTable));
 	}
 
-	@When("^I validate the Stop Payment$")
-	public void i_validate_the_Stop_Payment() throws Throwable {
+	@When("^I validate the Customer$")
+	public void i_validate_the_Customer() throws Throwable {
 		testContext.execute();
 	}
 
@@ -54,20 +54,19 @@ public class StopPaymentsValidationSteps {
 		});
 	}
 
-	private StopPayment makeStopPayment(DataTable stopPaymentTable) {
-		StopPayment stopPayment = new StopPayment();
+	private Customer makeCustomer(DataTable customerTable) {
+		Customer customer = new Customer();
 
-		List<Map<String, String>> rows = stopPaymentTable.asMaps(String.class, String.class);
+		List<Map<String, String>> rows = customerTable.asMaps(String.class, String.class);
 		rows.forEach(row -> {
-			stopPayment.setDebitCardNumber(row.get(DEBIT_CARD));
-			if (!row.get(STOP_PAY_AMOUNT).isEmpty()) {
-				stopPayment.setStopPayAmount(new BigDecimal(row.get(STOP_PAY_AMOUNT)));
-			}
-			stopPayment.setMerchantName(row.get(MERCHANT_NAME));
-			stopPayment.setReason(row.get(REASON));
+			customer.setUniqueId(row.get(UNIQUE_ID));
+			customer.setFirstName(row.get(FIRST_NAME));
+			customer.setLastName(row.get(LAST_NAME));
+			customer.setAccountNumber(row.get(ACCOUNT_NUMBER));
+			customer.setFavoriteColor(row.get(FAVORITE_COLOR));
 		});
 
-		return stopPayment;
+		return customer;
 	}
 
 	private List<ValidationError> makeValidationErrors(DataTable validationErrorsTable) {

@@ -3,12 +3,12 @@ package org.example.repository;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
 
-public class TestMySqlStopPaymentRepository extends MySqlStopPaymentRepository {
+public class TestMySqlCustomerRepository extends MySqlCustomerRepository {
 
-	public void clearAllStopPayments() {
+	public void clearAllCustomers() {
 		Transaction transaction = session.beginTransaction();
 
-		String hql = String.format("delete from StopPayment");
+		String hql = String.format("delete from Customer");
 		Query query = session.createQuery(hql);
 		query.executeUpdate();
 

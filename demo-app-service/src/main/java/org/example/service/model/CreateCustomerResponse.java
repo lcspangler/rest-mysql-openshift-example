@@ -9,9 +9,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.example.service.error.ServiceError;
 
-@XmlRootElement(name = "CreateStopPaymentResponse")
+@XmlRootElement(name = "CreateCustomerResponse")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CreateStopPaymentResponse {
+public class CreateCustomerResponse {
 
 	private List<ServiceError> errors = new ArrayList<ServiceError>();
 
@@ -39,7 +39,7 @@ public class CreateStopPaymentResponse {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CreateStopPaymentResponse other = (CreateStopPaymentResponse) obj;
+		CreateCustomerResponse other = (CreateCustomerResponse) obj;
 		if (errors == null) {
 			if (other.errors != null)
 				return false;
@@ -50,7 +50,7 @@ public class CreateStopPaymentResponse {
 
 	@Override
 	public String toString() {
-		return "CreateStopPaymentResponse [errors=" + errors + "]";
+		return "CreateCustomerResponse [errors=" + errors + "]";
 	}
 
 }

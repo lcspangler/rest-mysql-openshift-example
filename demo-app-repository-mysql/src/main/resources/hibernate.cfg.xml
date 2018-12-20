@@ -38,6 +38,6 @@
       <!-- Echo all executed SQL to stdout -->
       <property name="show_sql">true</property>        
         
-        <mapping class="org.example.model.StopPayment"></mapping>
+        <mapping class="org.example.model.Customer"></mapping>
     </session-factory>
 </hibernate-configuration>

@@ -5,37 +5,37 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.example.model.StopPayment;
+import org.example.model.Customer;
 import org.example.repository.util.HibernateUtil;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class MySqlStopPaymentRepository implements StopPaymentRepository {
+public class MySqlCustomerRepository implements CustomerRepository {
 
-	private static final Logger log = LogManager.getLogger(MySqlStopPaymentRepository.class);
+	private static final Logger log = LogManager.getLogger(MySqlCustomerRepository.class);
 
 	HibernateUtil hibernateUtil = new HibernateUtil();
 
 	final Session session = hibernateUtil.getHibernateSession();
 
 	@Override
-	public void addStopPayment(StopPayment stopPayment) {
+	public void addCustomer(Customer customer) {
 		// In a real application the full object would not be logged at info level
-		log.info("Saving stop payment: {}", stopPayment);
+		log.info("Saving customer: {}", customer);
 
 		Transaction transaction = session.beginTransaction();
-		session.save(stopPayment);
+		session.save(customer);
 
 		transaction.commit();
 	}
 
 	@Override
-	public List<StopPayment> getAllStopPayments() {
+	public List<Customer> getAllCustomers() {
 		Transaction transaction = session.beginTransaction();
 
-		Criteria cr = session.createCriteria(StopPayment.class);
-		List<StopPayment> results = cr.list();
+		Criteria cr = session.createCriteria(Customer.class);
+		List<Customer> results = cr.list();
 
 		transaction.commit();
 
@@ -43,22 +43,20 @@ public class MySqlStopPaymentRepository implements StopPaymentRepository {
 	}
 
 	@Override
-	public StopPayment getStopPayment(BigInteger id) {
-		log.info("Retrieving stop payment with id: {}", id);
+	public Customer getCustomer(BigInteger id) {
+		log.info("Retrieving customer with id: {}", id);
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void updateStopPayment(StopPayment stopPayment) {
+	public void updateCustomer(Customer customer) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
-	public void deleteStopPayment(StopPayment stopPayment) {
+	public void deleteCustomer(Customer customer) {
 		// TODO Auto-generated method stub
-
 	}
 
 	public HibernateUtil getHibernateUtil() {
