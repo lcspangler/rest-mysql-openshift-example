@@ -45,6 +45,16 @@ public class CustomerIntegration {
 		Customer customerForSave1 = makeCustomer();
 		testCustomerRepository.addCustomer(customerForSave1);
 
+		Customer customerForSave2 = makeCustomer();
+		customerForSave2.setUniqueId("A00002");
+		customerForSave2.setLastName("Smith II");
+		testCustomerRepository.addCustomer(customerForSave2);
+
+		Customer customerForSave3 = makeCustomer();
+		customerForSave3.setUniqueId("A00003");
+		customerForSave3.setLastName("Smith III");
+		testCustomerRepository.addCustomer(customerForSave3);
+
 		// Retrieve and check
 		List<Customer> retrievedCustomers = testCustomerRepository.getAllCustomers();
 		if (retrievedCustomers.isEmpty()) {
@@ -56,6 +66,12 @@ public class CustomerIntegration {
 
 	private Customer makeCustomer() {
 		Customer customer = new Customer();
+
+		customer.setUniqueId("A00001");
+		customer.setFirstName("James");
+		customer.setLastName("Smith");
+		customer.setAccountNumber("0000111100001111");
+		customer.setFavoriteColor("Green");
 
 		customer.setCreatedBy("test123");
 		customer.setCreatedTimestamp(LocalDateTime.now());
