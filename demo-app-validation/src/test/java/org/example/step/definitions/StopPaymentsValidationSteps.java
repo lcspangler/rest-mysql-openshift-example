@@ -17,7 +17,7 @@ import cucumber.api.java.en.When;
 
 public class StopPaymentsValidationSteps {
 
-	private static final String DEBIT_CARD = "Debit Card";
+	private static final String DEBIT_CARD = "Debit Card Number";
 	private static final String STOP_PAY_AMOUNT = "Stop Pay Amount";
 	private static final String ERROR_CODE = "Error Code";
 	private static final String ERROR_DESCRIPTION = "Error Description";
@@ -75,7 +75,8 @@ public class StopPaymentsValidationSteps {
 
 		List<Map<String, String>> rows = validationErrorsTable.asMaps(String.class, String.class);
 		rows.forEach(row -> {
-			if (!(row.get(ERROR_CODE) == null || row.get(ERROR_CODE).equals(""))) {
+			// if (!(row.get(ERROR_CODE) == null || row.get(ERROR_CODE).equals(""))) {
+			if (!row.get(ERROR_CODE).isBlank()) {
 				ValidationError expectedError = new ValidationError();
 				expectedError.setErrorCode(row.get(ERROR_CODE));
 				expectedError.setErrorDescription(row.get(ERROR_DESCRIPTION));
